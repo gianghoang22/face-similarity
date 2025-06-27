@@ -1,5 +1,5 @@
-import { Upload, X, ImageIcon } from "lucide-react"
-import { useRef } from "react"
+import { Upload, X } from "lucide-react"
+import { useRef, useEffect } from "react"
 
 export default function ImageUpload({ uploadedImage, onUpload, onRemove, placeholder }) {
   const inputRef = useRef()
@@ -11,6 +11,13 @@ export default function ImageUpload({ uploadedImage, onUpload, onRemove, placeho
       onUpload({ file, preview })
     }
   }
+
+  // Reset input file nếu uploadedImage = null
+  useEffect(() => {
+    if (!uploadedImage && inputRef.current) {
+      inputRef.current.value = ""
+    }
+  }, [uploadedImage])
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4 w-full sm:w-[300px] space-y-3">

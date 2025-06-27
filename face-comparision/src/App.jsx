@@ -32,6 +32,14 @@ export default function App() {
     setLoading(false)
   }
 
+  // ✅ Hàm reset mọi thứ về ban đầu
+  const handleReset = () => {
+    setImage1(null)
+    setImage2(null)
+    setResult(null)
+    setError(null)
+  }
+
   return (
     <div className="min-h-screen bg-blue-50 p-6 space-y-6">
       <h1 className="text-3xl font-bold text-center text-blue-600">🔍 Face Comparison App</h1>
@@ -51,7 +59,7 @@ export default function App() {
         </div>
       )}
 
-      <ResultBox result={result} />
+      <ResultBox result={result} onReset={handleReset} />
     </div>
   )
 }
